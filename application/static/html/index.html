@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+  <style type="text/css">
+      body { background-color: #303030; color: white; overflow-y: scroll; font-family: Arial, Helvetica, sans-serif;  font-size: 2vw; }
+      .bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-image: url('/assets/background.png'); background-size: cover; background-repeat: no-repeat; background-position: center; opacity: 0.3; }
+      a { color: grey; text-decoration: none }
+      .hovering:hover { color: white; background-color: #606060; }
+      .txt { background-color: rgb(111, 111, 111, 0.5); color: white; border: none; padding: 4vw #303030; font-size: 1.5vw;  }
+      .box { padding: 20px; background-color: rgb(64, 64, 64, 0.5); flex: 1; }
+      .container { display: flex; }
+      .lef { border-top-left-radius: 10px; border-bottom-left-radius: 10px }
+      .rig { border-top-right-radius: 10px; border-bottom-right-radius: 10px }
+  </style>
+</head>
+<body>
+  <h1 align="center"><img src="/assets/logo.png" style="width:10vw;height:auto"><br>QuikImpakt</h1>
+  <hr>
+  <br>
+  <div class="container">
+    <div class="box">
+      <h2>What is QuikImpakt?</h2>
+      <p>
+        QuickImpakt is a web tool to extract abstracts from <a href="https://pubmed.gov" class="hovering" target="blank">PubMed's</a> vast collection of scientific documents and create word meshes. It is helpful for presentations to summarize data.
+      </p>
+    </div>  
+    <div class="box">
+      <h2>How does it work?</h2>
+      <p>
+        QuickImpakt is created with Python and is hosted with the Flask framework. When you type any scientific topic into the search bar and press the Build button, the following happens: <br><br>
+        • The topic is searched up on PubMed's website. <br>
+        • The first 7 articles are requested. <br>
+        • Each of their articles' abstracts are taken, written to a text file, and joined into one paragraph. <br>
+        • The top 30 most common words are taken from the paragraph. <br>
+        • Those top 30 words are put into a solid black picture with a random color (that isn't dark). Common words like "and" or "it" are not included. 
+      </p>
+    </div> 
+    <div class="box">
+      <h2>Run QuikImpakt</h2>
+      <form action="/build" onsubmit="document.getElementById('loading').hidden = false">
+        <input type="text" class="txt hovering" id="q" name="q" style="width: 30vw; height: 2vw;" placeholder="&nbsp;Enter a topic here!">
+        <div align="center"><input type="submit" value="Build" class="txt hovering" style="width: 30.5vw; height: 2vw;"></div>
+      </form> <br>
+      <img src="/assets/activity.gif" style="width:5vw;height:auto" id="loading" hidden>
+    </div> 
+  </div>
+  <div class="bg"></div>
+</body>
+</html>
