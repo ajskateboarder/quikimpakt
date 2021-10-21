@@ -6,12 +6,15 @@ from PIL import ImageFont
 from PIL import Image
 import collections
 import requests
+import dotenv
 import shutil
 import random
 import json
 import os
 
 # Cool functions that are organized to look like a pip module file
+config = dotenv.dotenv_values('.env')
+
 class pubmed:
   def __init__(self) -> None:
     pass
@@ -120,7 +123,7 @@ class pubmed:
             'https://sdk.photoroom.com/v1/segment',
             files={'image_file': open('./application/pubmed/results/images/item'+str(i)+'.png', 'rb')},
             headers={
-              'x-api-key': '0571bf20b9746d51c20b445fc2c66998de3f2dc1'
+              'x-api-key': config['PHOTOROOMAPIKEY']
             }
         )
         if nobg.ok:
