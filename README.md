@@ -4,6 +4,10 @@ Extract abstracts from PubMed's vast collection of scientific documents and crea
 ![img](https://raw.githubusercontent.com/ajskateboarder/stuff/main/site.png)
 ==
 ![img](https://raw.githubusercontent.com/ajskateboarder/stuff/main/photo.png)
+==
+![img](https://raw.githubusercontent.com/ajskateboarder/stuff/main/drugcloud.png)
+==
+![img](https://raw.githubusercontent.com/ajskateboarder/stuff/main/structure.png)
 
 ## Usage
 ```bash
