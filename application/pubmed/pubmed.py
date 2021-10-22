@@ -141,14 +141,12 @@ class pubmed:
     canvas.save('./application/pubmed/results/drugcloud.png')
     shutil.rmtree('./application/pubmed/results/images')
 
-    # get drug structures
-    r = requests.get("https://pubchem.ncbi.nlm.nih.gov/sdq/sdqagent.cgi?infmt=json&outfmt=json&query={%22download%22:%22*%22,%22collection%22:%22compound%22,%22where%22:{%22ands%22:[{%22*%22:%22aspirin%22}]},%22order%22:[%22relevancescore,desc%22],%22start%22:1,%22limit%22:10000000,%22downloadfilename%22:%22PubChem_compound_text_aspirin%22}").text
-    headers = {
-      'referer': 'https://pubchem.ncbi.nlm.nih.gov/',
-      'user-agent': 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.107 Safari/537.36'
-    }
+    # get newest drug structure
+    r = requests.get(
+      "https://pubchem.ncbi.nlm.nih.gov/sdq/sdqagent.cgi?infmt=json&outfmt=json&query={%22download%22:%22*%22,%22collection%22:%22compound%22,%22where%22:{%22ands%22:[{%22*%22:%22_str_%22}]},%22order%22:[%22relevancescore,desc%22],%22start%22:1,%22limit%22:10000000,%22downloadfilename%22:%22PubChem_compound_text__str_%22}".replace('_str_', q.lower)
+    ).text
 
-    soup = BeautifulSoup(requests.get('https://pubchem.ncbi.nlm.nih.gov/compound/'+json.loads(r)[0]['cid'], headers=headers).text, 'html.parser')
+    soup = BeautifulSoup(requests.get('https://pubchem.ncbi.nlm.nih.gov/compound/'+json.loads(r)[0]['cid'], headers={'referer': 'https://pubchem.ncbi.nlm.nih.gov/', 'user-agent': 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.107 Safari/537.36'}).text, 'html.parser')
     url = soup.find('meta', property='og:image')['content']
     with open('./application/pubmed/results/structure.png', 'wb') as f:
       with requests.get(url) as resp:
