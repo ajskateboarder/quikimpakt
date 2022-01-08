@@ -13,7 +13,7 @@ import json
 import os
 
 # Cool functions that are organized to look like a pip module file
-config = '0571bf20b9746d51c20b445fc2c66998de3f2dc1'
+config = 'nooo go get your ownnn'
 
 class pubmed:
   def __init__(self) -> None:
